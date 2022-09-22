@@ -20,16 +20,14 @@ public class Client {
             BufferedReader bis = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream())) {
 
-            System.out.println("Trimitem catre server: ");
             bos.write(rezultat.getBytes());
             bos.flush();
             bos.write(String.valueOf("\n").getBytes());
             bos.flush();
 
-            System.out.println("Primim de la  server: ");
+            System.out.println("Suma este: ");
             line = bis.readLine();
             System.out.println(line);
-
             } catch (IOException exception) {
                 System.out.println(exception.getMessage());
         }
