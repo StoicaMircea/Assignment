@@ -2,6 +2,8 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
+import static java.lang.Integer.sum;
+
 public class Client {
     public static void main(String[] args) throws IOException {
         Scanner numere = new Scanner(System.in);
@@ -17,11 +19,17 @@ public class Client {
         try(Socket socket = new Socket("localhost", 1080);
             BufferedReader bis = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream())) {
-                bos.write((rezultat).getBytes());
-                bos.flush();
 
+            System.out.println("Trimitem catre server: ");
+            bos.write(rezultat.getBytes());
+            bos.flush();
+            bos.write(String.valueOf("\n").getBytes());
+            bos.flush();
+
+            System.out.println("Primim de la  server: ");
             line = bis.readLine();
             System.out.println(line);
+
             } catch (IOException exception) {
                 System.out.println(exception.getMessage());
         }

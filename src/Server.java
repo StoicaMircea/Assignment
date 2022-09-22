@@ -14,16 +14,18 @@ public class Server {
 
             System.out.println("Clientul s-a conectat!");
             System.out.println("Mesajul de la client: ");
-
+            int suma = 0;
             String[] array = null;
             String line = bis.readLine();
             while(line != null && !line.equals("")){
                 array = line.split("\\+", 2);
-                System.out.println(Integer.sum(Integer.parseInt(array[0]), Integer.parseInt(array[1])));
-                bos.write(Integer.sum(Integer.parseInt(array[0]),Integer.parseInt(array[1])));
-                bos.flush();
+                suma = sum(Integer.parseInt(array[0]), Integer.parseInt(array[1]));
+                System.out.println(suma);
+                /*bos.write(Integer.sum(Integer.parseInt(array[0]),Integer.parseInt(array[1])));
+                bos.flush();*/
                 line = bis.readLine();
             }
+            bos.write(String.valueOf(suma).getBytes());
         } catch(IOException exception) {
             System.out.println(exception.getMessage());
         }
